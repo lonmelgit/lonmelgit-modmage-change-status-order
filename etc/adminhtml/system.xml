@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="modmage" translate="label" sortOrder="1000">
+            <label>ModMage</label>
+        </tab>
+        <section id="change_order_status" translate="label" sortOrder="340" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Сhange Order Status</label>
+            <tab>modmage</tab>
+            <resource>ModMage_ChangeStatusOrder::config</resource>
+            <group id="general" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="description" translate="label" type="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Description</label>
+                    <comment>
+                        <![CDATA[The module changes any order status, except "Canceled", to "Complete" using a cron job.]]>
+                    </comment>
+                </field>
+                <field id="enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="period" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Period</label>
+                    <comment>Enter hours to determine order collection for a specific period.</comment>
+                </field>
+                <depends>
+                    <field id="*/general/enable">1</field>
+                </depends>
+                <field id="waiting_time" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Waiting time</label>
+                    <comment>Create period, after that statuses of orders will be changed, for example 24 hours</comment>
+                </field>
+                <depends>
+                    <field id="*/general/enable">1</field>
+                </depends>
+                <field id="cron" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cron time</label>
+                </field>
+                <depends>
+                    <field id="*/general/enable">1</field>
+                </depends>
+                <field id="send_invoice" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send Invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Choose if send invoice to the client after change status or not</comment>
+                </field>
+                <depends>
+                    <field id="*/general/enable">1</field>
+                </depends>
+                <field id="manual_cron_button" translate="label" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <frontend_model>ModMage\ChangeStatusOrder\Block\Adminhtml\Cron\Button</frontend_model>
+                    <comment>Run cron manually</comment>
+                </field>
+                <depends>
+                    <field id="*/general/enable">1</field>
+                </depends>
+            </group>
+        </section>
+    </system>
+</config>

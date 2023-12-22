@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <change_order_status>
+            <general>
+                <enable>1</enable>
+                <period>72</period>
+                <waiting_time>24</waiting_time>
+                <cron>0 * * * *</cron>
+                <send_invoice>0</send_invoice>
+            </general>
+        </change_order_status>
+    </default>
+</config>

@@ -1,0 +1,14 @@
+<?php /** @var \ModMage\ChangeStatusOrder\Block\Adminhtml\Cron\Button $block */
+
+echo $block->getButtonHtml();
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "ModMage_ChangeStatusOrder/js/admin/system/config/button": {
+                "ajaxUrl": "<?php echo $block->getAjaxUrl(); ?>"
+            }
+        }
+    }
+</script>
